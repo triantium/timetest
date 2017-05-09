@@ -101,6 +101,14 @@ public class TimeTest extends Application {
         lambdaCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<Long>(Long.valueOf(cellData.getValue().getMedianLambdaTime())));
         timeTable.getColumns().add(lambdaCol);
 
+        TableColumn<AbstractTimeTest, Long> runCol = new TableColumn<AbstractTimeTest, Long>("Durchläufe");
+        runCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<Long>(Long.valueOf(cellData.getValue().getIterations())));
+        timeTable.getColumns().add(runCol);
+
+        TableColumn<AbstractTimeTest, Long> sizeCol = new TableColumn<AbstractTimeTest, Long>("Größe");
+        sizeCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<Long>(Long.valueOf(cellData.getValue().getTestSize())));
+        timeTable.getColumns().add(sizeCol);
+
         StackPane root = new StackPane();
         root.getChildren().add(new VBox(10, inputBox, timeTable));
 
