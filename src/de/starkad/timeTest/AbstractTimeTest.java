@@ -129,10 +129,10 @@ public abstract class AbstractTimeTest {
 
     public void doPrint() {
         System.out.println(className + "\n\n----------------------------\n\n");
-        System.out.println("Medians(Wiederholunen: " + iterations + ", Größe: " + testSize + ")\n");
+        System.out.println("|Medians(Wiederholunen: " + iterations + ", Größe: " + testSize + ")\n");
         System.out.println("Index:\t\t" + medianIndexedTime);
         System.out.println("Iterator:\t" + medianIteratorTime);
-        System.out.println("Lambda:\t\t" + medianLambdaTime + "\n");
+        System.out.println("Lambda:\t\t" + medianLambdaTime + "\n--------------------------------------------\n");
     }
 
     public int getRuns() {

@@ -68,7 +68,11 @@ public class ArrayListTime extends AbstractTimeTest {
 
     @Override
     protected void fillWhateverIsUsed(int size) {
-        testObjects = new ArrayList<>();
+        if (testObjects == null) {
+            testObjects = new ArrayList();
+        } else {
+            testObjects.clear();
+        }
         for (int i = 0; i < size; i++) {
             testObjects.add(new Worker());
         }

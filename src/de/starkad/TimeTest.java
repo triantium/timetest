@@ -3,6 +3,7 @@ package de.starkad;
 import de.starkad.timeTest.AbstractTimeTest;
 import de.starkad.timeTest.ArrayListTime;
 import de.starkad.timeTest.ArrayTime;
+import de.starkad.timeTest.HashMapTime;
 import de.starkad.timeTest.LinkedListTime;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -22,6 +23,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -42,17 +46,25 @@ public class TimeTest extends Application {
 
         Button btn = new Button();
         btn.setText("Teste Zeiten");
+        Rectangle rect = new Rectangle(20, 20);
         HBox inputBox = new HBox(10, new Label(iterationTextField.getId()), iterationTextField, new Label(sizeTextField.getId()), sizeTextField, btn);
+        inputBox.getChildren().add(rect);
         inputBox.setAlignment(Pos.CENTER);
 
         TableView<AbstractTimeTest> timeTable = new TableView(testList);
         timeTable.setPlaceholder(new Label("empty"));
 
+        btn.setOnMouseClicked((e) -> {
+            rect.setFill(Paint.valueOf(Color.RED.toString()));
+        });
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
+                rect.setFill(Paint.valueOf(Color.RED.toString()));
+
                 testList.forEach((test) -> {
+
                     int iterations = 100;
                     int size = 1000;
                     try {
@@ -62,13 +74,14 @@ public class TimeTest extends Application {
                         //simply ingnore stupid User
                     }
                     test.reset();
-                    test.setTestSize(iterations);
-                    test.setIterations(size);
+                    test.setTestSize(size);
+                    test.setIterations(iterations);
                     test.run();
                     test.doPrint();
                 });
-                timeTable.refresh();
 
+                rect.setFill(Paint.valueOf(Color.GREEN.toString()));
+                timeTable.refresh();
             }
         });
 
@@ -110,6 +123,7 @@ public class TimeTest extends Application {
         tmpList.add(new ArrayTime(1, 1));
         tmpList.add(new ArrayListTime(1, 1));
         tmpList.add(new LinkedListTime(1, 1));
+        tmpList.add(new HashMapTime(1, 1));
 
         testList = FXCollections.observableArrayList(tmpList);
 
