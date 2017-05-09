@@ -21,28 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
+package de.thi.timeTest;
 
-import de.starkad.worker.Worker;
-import java.util.LinkedList;
+import de.thi.worker.Worker;
+import java.util.HashMap;
 
 /**
  *
  * @author Manuel Müller
  */
-public class LinkedListTime extends AbstractTimeTest {
+public class HashMapTime extends AbstractTimeTest {
 
-    private LinkedList<Worker> testObjects;
+    private HashMap<Integer, Worker> testObjects = new HashMap();
 
-    public LinkedListTime(int testSize, int iterations) {
+    public HashMapTime(int testSize, int iterations) {
         super(testSize, iterations);
-        fillWhateverIsUsed(this.testSize);
+        fillWhateverIsUsed(testSize);
+
     }
 
     @Override
     protected long doLamdaRun() {
         long startTime = System.nanoTime();
-        testObjects.forEach((t) -> {
+        testObjects.forEach((k, t) -> {
             t.doSomething();
         });
         return (System.nanoTime() - startTime);
@@ -51,8 +52,8 @@ public class LinkedListTime extends AbstractTimeTest {
     @Override
     protected long doIteratorRun() {
         long startTime = System.nanoTime();
-        for (Worker object : testObjects) {
-            object.doSomething();
+        for (Integer key : testObjects.keySet()) {
+            testObjects.get(key).doSomething();
         }
         return (System.nanoTime() - startTime);
     }
@@ -61,7 +62,7 @@ public class LinkedListTime extends AbstractTimeTest {
     protected long doIndexRun() {
         long startTime = System.nanoTime();
         for (int i = 0; i < testSize; i++) {
-            testObjects.get(i).doSomething();
+            testObjects.get(Integer.valueOf(i)).doSomething();
         }
         return (System.nanoTime() - startTime);
     }
@@ -69,12 +70,12 @@ public class LinkedListTime extends AbstractTimeTest {
     @Override
     protected void fillWhateverIsUsed(int size) {
         if (testObjects == null) {
-            testObjects = new LinkedList();
+            testObjects = new HashMap();
         } else {
             testObjects.clear();
         }
         for (int i = 0; i < size; i++) {
-            testObjects.add(new Worker());
+            testObjects.put(Integer.valueOf(i), new Worker());
         }
     }
 

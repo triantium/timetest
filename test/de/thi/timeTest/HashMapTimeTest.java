@@ -21,23 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.worker;
+package de.thi.timeTest;
+
+import de.thi.timeTest.HashMapTime;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
  * @author Manuel Müller
  */
-public class Worker {
+public class HashMapTimeTest {
 
-    int c = 0;
+    private HashMapTime test;
 
-    public int doSomething() {
-        for (int i = 0; i < 10; i++) {
-            c = i;
-        }
+    public HashMapTimeTest() {
+    }
 
-        return c;
+    @Before
+    public void setUp() {
+        test = new HashMapTime(10000, 100);
+    }
 
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of doLamdaRun method, of class ArrayTimeTest.
+     */
+    @Test
+    public void testRun() {
+        test.run();
+        test.doPrint();
     }
 
 }

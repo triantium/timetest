@@ -1,10 +1,10 @@
-package de.starkad;
+package de.thi;
 
-import de.starkad.timeTest.AbstractTimeTest;
-import de.starkad.timeTest.ArrayListTime;
-import de.starkad.timeTest.ArrayTime;
-import de.starkad.timeTest.HashMapTime;
-import de.starkad.timeTest.LinkedListTime;
+import de.thi.timeTest.AbstractTimeTest;
+import de.thi.timeTest.ArrayListTime;
+import de.thi.timeTest.ArrayTime;
+import de.thi.timeTest.HashMapTime;
+import de.thi.timeTest.LinkedListTime;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectWrapper;

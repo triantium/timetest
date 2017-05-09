@@ -21,22 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
+package de.thi.timeTest;
 
-import de.starkad.worker.Worker;
-import java.util.ArrayList;
+import de.thi.worker.Worker;
+import java.util.LinkedList;
 
 /**
  *
  * @author Manuel Müller
  */
-public class ArrayListTime extends AbstractTimeTest {
+public class LinkedListTime extends AbstractTimeTest {
 
-    private ArrayList<Worker> testObjects;
+    private LinkedList<Worker> testObjects;
 
-    public ArrayListTime(int testSize, int iterations) {
+    public LinkedListTime(int testSize, int iterations) {
         super(testSize, iterations);
-        fillWhateverIsUsed(testSize);
+        fillWhateverIsUsed(this.testSize);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ArrayListTime extends AbstractTimeTest {
     @Override
     protected void fillWhateverIsUsed(int size) {
         if (testObjects == null) {
-            testObjects = new ArrayList();
+            testObjects = new LinkedList();
         } else {
             testObjects.clear();
         }

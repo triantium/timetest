@@ -21,39 +21,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
+package de.thi.timeTest;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import de.thi.worker.Worker;
 
 /**
  *
  * @author Manuel Müller
  */
-public class HashMapTimeTest {
+public class ArrayTime extends AbstractTimeTest {
 
-    private HashMapTime test;
+    private Worker[] testObjects;
 
-    public HashMapTimeTest() {
+    public ArrayTime(int testSize, int iterations) {
+        super(testSize, iterations);
+        fillWhateverIsUsed(testSize);
     }
 
-    @Before
-    public void setUp() {
-        test = new HashMapTime(10000, 100);
+    @Override
+    protected long doLamdaRun() {
+        return 0;
     }
 
-    @After
-    public void tearDown() {
+    @Override
+    protected long doIteratorRun() {
+        long startTime = System.nanoTime();
+        for (Worker object : testObjects) {
+            object.doSomething();
+        }
+        return (System.nanoTime() - startTime);
     }
 
-    /**
-     * Test of doLamdaRun method, of class ArrayTimeTest.
-     */
-    @Test
-    public void testRun() {
-        test.run();
-        test.doPrint();
+    @Override
+    protected long doIndexRun() {
+        long startTime = System.nanoTime();
+        for (int i = 0; i < testSize; i++) {
+            testObjects[i].doSomething();
+        }
+        return (System.nanoTime() - startTime);
+    }
+
+    @Override
+    protected void fillWhateverIsUsed(int size) {
+        testObjects = new Worker[size];
+        for (int i = 0; i < size; i++) {
+            testObjects[i] = new Worker();
+        }
     }
 
 }

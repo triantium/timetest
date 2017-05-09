@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
+package de.thi.timeTest;
 
+import de.thi.timeTest.ArrayListTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,16 +32,16 @@ import org.junit.Test;
  *
  * @author Manuel Müller
  */
-public class LinkedListTimeTest {
+public class ArrayListTimeTest {
 
-    private LinkedListTime test;
+    private ArrayListTime test;
 
-    public LinkedListTimeTest() {
+    public ArrayListTimeTest() {
     }
 
     @Before
     public void setUp() {
-        test = new LinkedListTime(10000, 100);
+        test = new ArrayListTime(10000, 100);
     }
 
     @After

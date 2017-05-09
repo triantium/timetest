@@ -21,39 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+package de.thi.worker;
 
 /**
  *
  * @author Manuel Müller
  */
-public class ArrayTimeTest {
+public class Worker {
 
-    private ArrayTime test;
+    int c = 0;
 
-    public ArrayTimeTest() {
-    }
+    public int doSomething() {
+        for (int i = 0; i < 10; i++) {
+            c = i;
+        }
 
-    @Before
-    public void setUp() {
-        test = new ArrayTime(10000, 100);
-    }
+        return c;
 
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of doLamdaRun method, of class ArrayTimeTest.
-     */
-    @Test
-    public void testRun() {
-        test.run();
-        test.doPrint();
     }
 
 }

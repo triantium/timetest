@@ -21,26 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.starkad.timeTest;
+package de.thi.timeTest;
 
-import de.starkad.worker.Worker;
+import de.thi.worker.Worker;
+import java.util.ArrayList;
 
 /**
  *
  * @author Manuel Müller
  */
-public class ArrayTime extends AbstractTimeTest {
+public class ArrayListTime extends AbstractTimeTest {
 
-    private Worker[] testObjects;
+    private ArrayList<Worker> testObjects;
 
-    public ArrayTime(int testSize, int iterations) {
+    public ArrayListTime(int testSize, int iterations) {
         super(testSize, iterations);
         fillWhateverIsUsed(testSize);
     }
 
     @Override
     protected long doLamdaRun() {
-        return 0;
+        long startTime = System.nanoTime();
+        testObjects.forEach((t) -> {
+            t.doSomething();
+        });
+        return (System.nanoTime() - startTime);
     }
 
     @Override
@@ -56,16 +61,20 @@ public class ArrayTime extends AbstractTimeTest {
     protected long doIndexRun() {
         long startTime = System.nanoTime();
         for (int i = 0; i < testSize; i++) {
-            testObjects[i].doSomething();
+            testObjects.get(i).doSomething();
         }
         return (System.nanoTime() - startTime);
     }
 
     @Override
     protected void fillWhateverIsUsed(int size) {
-        testObjects = new Worker[size];
+        if (testObjects == null) {
+            testObjects = new ArrayList();
+        } else {
+            testObjects.clear();
+        }
         for (int i = 0; i < size; i++) {
-            testObjects[i] = new Worker();
+            testObjects.add(new Worker());
         }
     }
 
